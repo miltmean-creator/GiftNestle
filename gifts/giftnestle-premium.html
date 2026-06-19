@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GiftNestle - Premium Gift Boutique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white: #FFFFFF;
+            --soft-off-white: #F5FBF9;
+            --soft-green: #D4F1E8;
+            --mint-green: #A8E6D1;
+            --deep-green: #5FB89C;
+            --dark-green: #2D5A4A;
+            --charcoal: #1A1A1A;
+            --gray: #666666;
+            --light-gray: #F8F8F8;
+            --shadow: 0 10px 40px rgba(95, 184, 156, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            background: var(--white);
+            padding: 1.2rem 2rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(95, 184, 156, 0.08);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .header-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--mint-green), var(--deep-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--mint-green), var(--deep-green));
+            transition: width 0.3s ease;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav a:hover {
+            color: var(--mint-green);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .search-box {
+            background: var(--soft-off-white);
+            border: 2px solid transparent;
+            padding: 0.7rem 1.2rem;
+            border-radius: 50px;
+            width: 250px;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--mint-green);
+            background: var(--white);
+        }
+
+        .wishlist-btn, .cart-btn {
+            position: relative;
+            background: var(--soft-green);
+            border: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--charcoal);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .wishlist-btn:hover, .cart-btn:hover {
+            background: var(--mint-green);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(168, 230, 209, 0.3);
+        }
+
+        .badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--deep-green);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            margin-top: 70px;
+            background: linear-gradient(135deg, var(--soft-off-white) 0%, var(--white) 50%, #E8F7F2 100%);
+            padding: 6rem 2rem;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(168, 230, 209, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 241, 232, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 20s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--charcoal);
+        }
+
+        .hero-content h1 span {
+            background: linear-gradient(135deg, var(--mint-green), var(--deep-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 500px;
+            margin: 0 0 2rem 0;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--mint-green), var(--deep-green));
+            color: white;
+            padding: 1.1rem 2.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            box-shadow: 0 10px 30px rgba(95, 184, 156, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(95, 184, 156, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--deep-green);
+            padding: 1.1rem 2.8rem;
+            border: 2px solid var(--deep-green);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .btn-secondary:hover {
+            background: var(--deep-green);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-showcase {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #E8F7F2, #F0FBFA);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(95, 184, 156, 0.2);
+            animation: slideIn 0.8s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(168, 230, 209, 0.1);
+            border-radius: 50%;
+            animation: float-random 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        @keyframes float-random {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(20px, -20px); }
+            50% { transform: translate(-10px, 20px); }
+            75% { transform: translate(15px, 10px); }
+        }
+
+        /* ===== CATEGORY SECTION ===== */
+        .categories {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            color: var(--charcoal);
+        }
+
+        .section-header h2 span {
+            background: linear-gradient(135deg, var(--mint-green), var(--deep-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .categories-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: linear-gradient(135deg, var(--soft-off-white), var(--white));
+            border-radius: 25px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(95, 184, 156, 0.08);
+            border: 2px solid transparent;
+            position: relative;
+            height: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(95, 184, 156, 0.2);
+            border-color: var(--mint-green);
+            background: linear-gradient(135deg, var(--white), #F0FBFA);
+        }
+
+        .category-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            transition: transform 0.4s ease;
+        }
+
+        .category-card:hover .category-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .category-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-desc {
+            font-size: 0.95rem;
+            color: var(--gray);
+        }
+
+        /* ===== FEATURED PRODUCTS ===== */
+        .featured-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--white) 0%, var(--soft-off-white) 100%);
+        }
+
+        .products-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-nav {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: var(--soft-green);
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--charcoal);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, var(--mint-green), var(--deep-green));
+            color: white;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(95, 184, 156, 0.08);
+            position: relative;
+            border: 2px solid transparent;
+            group: true;
+        }
+
+        .product-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(95, 184, 156, 0.2);
+            border-color: var(--mint-green);
+        }
+
+        .product-image {
+            position: relative;
+            width: 100%;
+            height: 260px;
+            background: linear-gradient(135deg, #E8F7F2, #F0FBFA);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            overflow: hidden;
+        }
+
+        .product-label {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, var(--mint-green), var(--deep-green));
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            z-index: 2;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .product-wishlist {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-wishlist:hover {
+            background: var(--mint-green);
+            transform: scale(1.1);
+            color: white;
+        }
+
+        .product-wishlist.active {
+            color: #E74C3C;
+        }
+
+        .product-info {
+            padding: 1.8rem;
+        }
+
+        .product-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .product-desc {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-rating {
+            display: flex;
+            gap: 0.3rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .star {
+            color: #FFB800;
+        }
+
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .price-tag {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--deep-green);
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .discount {
+            background: #FFE5E5;
+            color: #E74C3C;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--mint-green), var(--deep-green));
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 5px 20px rgba(95, 184, 156, 0.2);
+        }
+
+        .add-to-cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(95, 184, 156, 0.3);
+        }
+
+        /* ===== GIFT GUIDES ===== */
+        .gift-guides {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .guides-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .guide-card {
+            background: linear-gradient(135deg, #E8F7F2, #F0FBFA);
+            border-radius: 25px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .guide-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(168, 230, 209, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+        }
+
+        .guide-card:hover::before {
+            top: -30%;
+            right: -30%;
+        }
+
+        .guide-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .guide-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .guide-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            color: var(--charcoal);
+        }
+
+        .guide-desc {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .guide-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--deep-green);
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .guide-link:hover {
+            gap: 1rem;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--soft-off-white) 0%, var(--white) 100%);
+        }
+
+        .testimonials-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(95, 184, 156, 0.08);
+            border-left: 5px solid var(--mint-green);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(95, 184, 156, 0.15);
+        }
+
+        .stars {
+            color: #FFB800;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .testimonial-text {
+            color: var(--charcoal);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--mint-green), var(--deep-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .author-info h4 {
+            font-size: 0.95rem;
+            color: var(--charcoal);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--deep-green) 0%, var(--dark-green) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .newsletter p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+        }
+
+        .newsletter-btn {
+            background: var(--mint-green);
+            color: var(--charcoal);
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .newsletter-btn:hover {
+            background: white;
+            transform: scale(1.05);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-section a {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--mint-green);
+            padding-left: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--mint-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--charcoal);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--deep-green);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ===== CART MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--white);
+            margin: 2% auto;
+            padding: 2.5rem;
+            border-radius: 25px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 85vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-btn {
+            float: right;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--gray);
+            cursor: pointer;
+            border: none;
+            background: none;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--charcoal);
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            color: var(--charcoal);
+            margin-bottom: 2rem;
+            clear: both;
+            font-weight: 800;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: var(--soft-off-white);
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--mint-green);
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-item-price {
+            color: var(--mint-green);
+            font-weight: 700;
+        }
+
+        .quantity-control {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .qty-btn {
+            background: var(--soft-green);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--charcoal);
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .qty-btn:hover {
+            background: var(--mint-green);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .remove-btn:hover {
+            color: var(--deep-green);
+            transform: scale(1.2);
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--gray);
+        }
+
+        .cart-total {
+            background: linear-gradient(135deg, var(--soft-green), #E8F7F2);
+            padding: 2rem;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0 1.5rem 0;
+            font-size: 1.3rem;
+            border: 2px solid var(--mint-green);
+        }
+
+        .total-amount {
+            font-weight: 800;
+            color: var(--deep-green);
+            font-size: 1.6rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--mint-green), var(--deep-green));
+            color: white;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(95, 184, 156, 0.3);
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(95, 184, 156, 0.4);
+        }
+
+        .checkout-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .search-box {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .nav {
+                gap: 1rem;
+            }
+
+            .search-box {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .hero-visual {
+                height: 300px;
+            }
+
+            .product-showcase {
+                font-size: 8rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 20% auto;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-icon">🎁</span> GiftNestle
+            </div>
+            <nav class="nav">
+                <a href="#categories">Shop</a>
+                <a href="#guides">Guides</a>
+                <a href="#testimonials">Reviews</a>
+                <a href="#newsletter">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <input type="text" class="search-box" placeholder="Search gifts...">
+                <button class="wishlist-btn" onclick="alert('Wishlist feature coming soon!')">
+                    <i class="far fa-heart"></i> Wishlist <span class="badge">0</span>
+                </button>
+                <button class="cart-btn" onclick="openCart()">
+                    <i class="fas fa-shopping-bag"></i> Cart <span class="badge" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Gifts That Speak <span>Louder</span> Than Words</h1>
+                <p>Discover our curated collection of elegant, innovative gifts for every occasion. From teddy bears suspended in shimmering balloons to exquisite bouquets, we transform every moment into something unforgettable.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="scrollToSection('categories')">
+                        <i class="fas fa-sparkles"></i> Explore Collection
+                    </button>
+                    <button class="btn-secondary" onclick="scrollToSection('guides')">
+                        <i class="fas fa-book"></i> Gift Guides
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="product-showcase">
+                    🎀
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="categories" id="categories">
+        <div class="section-header">
+            <h2>Shop By <span>Category</span></h2>
+            <p>Explore our collections curated for every occasion and celebration</p>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card" onclick="filterProducts('balloons')">
+                <div class="category-icon">🎈</div>
+                <div class="category-name">Teddy in Balloon</div>
+                <div class="category-desc">Adorable teddies floating in clear balloons</div>
+            </div>
+            <div class="category-card" onclick="filterProducts('bouquets')">
+                <div class="category-icon">🌹</div>
+                <div class="category-name">Bouquets & Flowers</div>
+                <div class="category-desc">Premium floral arrangements</div>
+            </div>
+            <div class="category-card" onclick="filterProducts('luxury')">
+                <div class="category-icon">✨</div>
+                <div class="category-name">Luxury Gifts</div>
+                <div class="category-desc">Premium gift sets and collections</div>
+            </div>
+            <div class="category-card" onclick="filterProducts('personal')">
+                <div class="category-icon">💎</div>
+                <div class="category-name">Personalized</div>
+                <div class="category-desc">Custom gifts with your special touch</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED PRODUCTS -->
+    <section class="featured-section">
+        <div class="products-container">
+            <div class="section-header">
+                <h2>Our Featured <span>Collection</span></h2>
+                <p>Handpicked selections of the most elegant and innovative gifts</p>
+            </div>
+            <div class="section-nav">
+                <button class="nav-btn active" onclick="filterProducts('all')">All Products</button>
+                <button class="nav-btn" onclick="filterProducts('trending')">Trending</button>
+                <button class="nav-btn" onclick="filterProducts('bestsellers')">Best Sellers</button>
+                <button class="nav-btn" onclick="filterProducts('new')">New Arrivals</button>
+            </div>
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <!-- GIFT GUIDES -->
+    <section class="gift-guides" id="guides">
+        <div class="section-header">
+            <h2>Gift <span>Guides</span></h2>
+            <p>Find the perfect gift for every occasion and person</p>
+        </div>
+        <div class="guides-grid">
+            <div class="guide-card">
+                <div class="guide-content">
+                    <div class="guide-icon">💕</div>
+                    <h3 class="guide-title">For Your Love</h3>
+                    <p class="guide-desc">Express your deepest feelings with romantic gifts that convey love and affection.</p>
+                    <a href="#" class="guide-link">Explore <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="guide-card">
+                <div class="guide-content">
+                    <div class="guide-icon">🎂</div>
+                    <h3 class="guide-title">Birthday Specials</h3>
+                    <p class="guide-desc">Make their special day unforgettable with our curated birthday collection.</p>
+                    <a href="#" class="guide-link">Explore <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="guide-card">
+                <div class="guide-content">
+                    <div class="guide-icon">👶</div>
+                    <h3 class="guide-title">New Arrivals</h3>
+                    <p class="guide-desc">Welcome new babies and celebrate new beginnings with our special gifts.</p>
+                    <a href="#" class="guide-link">Explore <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="guide-card">
+                <div class="guide-content">
+                    <div class="guide-icon">🎉</div>
+                    <h3 class="guide-title">Celebrations</h3>
+                    <p class="guide-desc">Mark every milestone and celebration with gifts that matter.</p>
+                    <a href="#" class="guide-link">Explore <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-header">
+            <h2>Loved By <span>Customers</span></h2>
+            <p>Read what our happy customers have to say about GiftNestle</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"The teddy in balloon was absolutely beautiful! My girlfriend loved it. The presentation and quality exceeded my expectations."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AR</div>
+                    <div class="author-info">
+                        <h4>Arjun Raj</h4>
+                        <p>Verified Buyer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"GiftNestle made my mother's birthday special. The personalized gift box was elegant and the delivery was on time."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">PS</div>
+                    <div class="author-info">
+                        <h4>Priya Singh</h4>
+                        <p>Verified Buyer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Best gift shop I've found! The bouquets are fresh, arrangements are creative, and customer service is amazing."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">NK</div>
+                    <div class="author-info">
+                        <h4>Nikhil Kumar</h4>
+                        <p>Verified Buyer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter" id="newsletter">
+        <div class="newsletter-content">
+            <h2>Get Special Offers</h2>
+            <p>Subscribe to our newsletter and get exclusive discounts and gift ideas delivered to your inbox</p>
+            <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About GiftNestle</h4>
+                <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 1.5rem;">We believe every gift tells a story. Our curated collection of elegant, innovative gifts makes every moment unforgettable.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#">Shop All</a>
+                <a href="#">Gift Guides</a>
+                <a href="#">New Arrivals</a>
+                <a href="#">Best Sellers</a>
+                <a href="#">Customize Gift</a>
+            </div>
+            <div class="footer-section">
+                <h4>Customer Care</h4>
+                <a href="#">Contact Us</a>
+                <a href="#">Shipping Info</a>
+                <a href="#">Returns & Exchanges</a>
+                <a href="#">FAQ</a>
+                <a href="#">Track Order</a>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="#">About Us</a>
+                <a href="#">Blog</a>
+                <a href="#">Careers</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 GiftNestle. All rights reserved. | Crafted with <span style="color: #FF6B6B;">❤</span> for gift lovers</p>
+        </div>
+    </footer>
+
+    <!-- CART MODAL -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeCart()">&times;</button>
+            <h2 class="modal-title">Your Gift Cart</h2>
+            <div id="cartItems"></div>
+            <div id="cartTotalSection"></div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: "Teddy in Floating Balloon",
+                emoji: "🧸",
+                category: "balloons",
+                desc: "Adorable teddy bear floating in a crystal-clear balloon",
+                price: 1299,
+                originalPrice: 1599,
+                rating: 4.8,
+                label: "Premium",
+                trending: true
+            },
+            {
+                id: 2,
+                name: "Premium Rose Bouquet",
+                emoji: "🌹",
+                category: "bouquets",
+                desc: "24 premium red roses beautifully arranged",
+                price: 1599,
+                originalPrice: 1999,
+                rating: 4.9,
+                label: "Best Seller",
+                bestseller: true
+            },
+            {
+                id: 3,
+                name: "Luxury Gift Box Deluxe",
+                emoji: "🎁",
+                category: "luxury",
+                desc: "Premium gift box with customizable contents",
+                price: 2499,
+                originalPrice: 2999,
+                rating: 4.7,
+                label: "Exclusive",
+                new: true
+            },
+            {
+                id: 4,
+                name: "Gourmet Chocolate Truffles",
+                emoji: "🍫",
+                category: "luxury",
+                desc: "Handcrafted chocolate truffles in elegant packaging",
+                price: 899,
+                originalPrice: 1099,
+                rating: 4.6,
+                label: "Sale",
+                bestseller: true
+            },
+            {
+                id: 5,
+                name: "Aromatherapy Candle Set",
+                emoji: "🕯️",
+                category: "luxury",
+                desc: "Premium scented candles - Rose, Vanilla & Lavender",
+                price: 1099,
+                originalPrice: 1399,
+                rating: 4.7,
+                label: "Popular",
+                trending: true
+            },
+            {
+                id: 6,
+                name: "Premium Teddy Bear",
+                emoji: "🐻",
+                category: "balloons",
+                desc: "Luxurious plush teddy bear with silk ribbon",
+                price: 1799,
+                originalPrice: 2199,
+                rating: 4.8,
+                label: "Premium",
+                new: true
+            },
+            {
+                id: 7,
+                name: "Flower & Chocolate Combo",
+                emoji: "💐",
+                category: "bouquets",
+                desc: "Beautiful flowers paired with gourmet chocolates",
+                price: 2199,
+                originalPrice: 2699,
+                rating: 4.9,
+                label: "Best Seller",
+                bestseller: true
+            },
+            {
+                id: 8,
+                name: "Ultimate Luxury Gift Set",
+                emoji: "✨",
+                category: "luxury",
+                desc: "Complete premium gift set with accessories",
+                price: 3299,
+                originalPrice: 3999,
+                rating: 5.0,
+                label: "Exclusive",
+                trending: true
+            },
+            {
+                id: 9,
+                name: "Personalized Photo Balloon",
+                emoji: "🎈",
+                category: "balloons",
+                desc: "Custom teddy with your favorite photo",
+                price: 1499,
+                originalPrice: 1899,
+                rating: 4.7,
+                label: "Custom",
+                new: true
+            },
+            {
+                id: 10,
+                name: "Enchanted Garden Bouquet",
+                emoji: "🌺",
+                category: "bouquets",
+                desc: "Mix of exotic flowers - a garden in a vase",
+                price: 1899,
+                originalPrice: 2299,
+                rating: 4.8,
+                label: "Premium",
+                trending: true
+            },
+            {
+                id: 11,
+                name: "Personalized Name Box",
+                emoji: "📦",
+                category: "personal",
+                desc: "Custom engraved gift box with your message",
+                price: 1599,
+                originalPrice: 1999,
+                rating: 4.6,
+                label: "Custom",
+                bestseller: true
+            },
+            {
+                id: 12,
+                name: "Monogram Luxury Hamper",
+                emoji: "🎀",
+                category: "personal",
+                desc: "Personalized hamper with monogram design",
+                price: 2799,
+                originalPrice: 3299,
+                rating: 4.9,
+                label: "Premium",
+                new: true
+            }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('giftnestle_cart')) || [];
+        let currentFilter = 'all';
+
+        function loadProducts(filter = 'all') {
+            const productsGrid = document.getElementById('productsGrid');
+            let filtered = products;
+
+            if (filter === 'trending') {
+                filtered = products.filter(p => p.trending);
+            } else if (filter === 'bestsellers') {
+                filtered = products.filter(p => p.bestseller);
+            } else if (filter === 'new') {
+                filtered = products.filter(p => p.new);
+            } else if (filter !== 'all') {
+                filtered = products.filter(p => p.category === filter);
+            }
+
+            productsGrid.innerHTML = filtered.map(product => `
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <span class="product-label">${product.label}</span>
+                        <button class="product-wishlist" onclick="toggleWishlist(event)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        ${product.emoji}
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-desc">${product.desc}</p>
+                        <div class="product-rating">
+                            ${'⭐'.repeat(Math.floor(product.rating))} <span style="color: var(--gray); margin-left: 0.5rem;">(${product.rating})</span>
+                        </div>
+                        <div class="product-price">
+                            <div>
+                                <span class="price-tag">₹${product.price}</span>
+                                <span class="original-price">₹${product.originalPrice}</span>
+                                <span class="discount">${Math.round((1 - product.price / product.originalPrice) * 100)}% OFF</span>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+                            <i class="fas fa-shopping-bag"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterProducts(category) {
+            currentFilter = category;
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            loadProducts(category);
+        }
+
+        function toggleWishlist(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            const btn = event.currentTarget;
+            btn.classList.toggle('active');
+            showNotification(btn.classList.contains('active') ? 'Added to Wishlist! ❤️' : 'Removed from Wishlist');
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({...product, quantity: 1});
+            }
+
+            localStorage.setItem('giftnestle_cart', JSON.stringify(cart));
+            updateCartCount();
+            showNotification('Added to cart! 🎉');
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+
+        function openCart() {
+            document.getElementById('cartModal').style.display = 'block';
+            displayCart();
+        }
+
+        function closeCart() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
+        function displayCart() {
+            const cartItemsDiv = document.getElementById('cartItems');
+            const cartTotalSection = document.getElementById('cartTotalSection');
+
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<div class="cart-empty"><i class="fas fa-shopping-bag" style="font-size: 3rem; color: var(--mint-green); margin-bottom: 1rem;"></i><p>Your cart is empty. Start shopping for beautiful gifts! 🎁</p></div>';
+                cartTotalSection.innerHTML = '';
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            cartItemsDiv.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.emoji} ${item.name}</div>
+                        <div class="cart-item-price">₹${item.price} × ${item.quantity}</div>
+                    </div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">−</button>
+                        <span style="min-width: 30px; text-align: center; font-weight: 700;">${item.quantity}</span>
+                        <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                        <button class="remove-btn" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            `).join('');
+
+            cartTotalSection.innerHTML = `
+                <div class="cart-total">
+                    <span>Total Amount:</span>
+                    <span class="total-amount">₹${total}</span>
+                </div>
+                <button class="checkout-btn" onclick="checkout()">
+                    <i class="fas fa-lock"></i> Proceed to Checkout
+                </button>
+            `;
+        }
+
+        function updateQuantity(productId, change) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    localStorage.setItem('giftnestle_cart', JSON.stringify(cart));
+                    updateCartCount();
+                    displayCart();
+                }
+            }
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('giftnestle_cart', JSON.stringify(cart));
+            updateCartCount();
+            displayCart();
+        }
+
+        function checkout() {
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            alert(`Thank you for your order! 🎉\n\nTotal: ₹${total}\n\nWe'll deliver your beautiful gifts with care!`);
+            cart = [];
+            localStorage.setItem('giftnestle_cart', JSON.stringify(cart));
+            updateCartCount();
+            closeCart();
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 2rem;
+                right: 2rem;
+                background: linear-gradient(135deg, var(--mint-green), var(--deep-green));
+                color: white;
+                padding: 1.2rem 1.8rem;
+                border-radius: 25px;
+                z-index: 3000;
+                animation: slideUp 0.3s ease;
+                font-weight: 600;
+                box-shadow: 0 10px 30px rgba(95, 184, 156, 0.3);
+            `;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            showNotification('Thanks for subscribing! Check your email 📧');
+            event.target.reset();
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('cartModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        loadProducts();
+        updateCartCount();
+    </script>
+</body>
+</html>
